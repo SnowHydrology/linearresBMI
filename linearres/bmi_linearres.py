@@ -1,24 +1,22 @@
 #! /usr/bin/env python
-"""Basic Model Interface implementation for a simple temperature index snow model."""
+"""Basic Model Interface implementation for a linear reservoir model."""
 
 import numpy as np
 from bmipy import Bmi
 
-from .snow import Snow
+from .linearres import Linearres
 
 
-class SnowBmi(Bmi):
+class LinearresBmi(Bmi):
 
-    """Temperature index snow model"""
+    """Linear reservoir model"""
 
-    _name = "Temperature Index Snow Model with BMI"
-    _input_var_names = ("atmosphere_water__precipitation_leq-volume_flux",
-                        "land_surface_air__temperature", )
-    _output_var_names = ("snowpack__liquid-equivalent_depth",
-                         "snowpack__melt_volume_flux", )
+    _name = "Linear reservoir Model with BMI"
+    _input_var_names = ("atmosphere_water__precipitation_leq-volume_flux",)
+    _output_var_names = ("land_surface_water__runoff_volume_flux",)
 
     def __init__(self):
-        """Create a SnowBmi model that is ready for initialization."""
+        """Create a LinearresBmi model that is ready for initialization."""
         self._model = None
         self._values = {}
         self._var_units = {}
@@ -39,21 +37,17 @@ class SnowBmi(Bmi):
             Path to name of input file.
         """
         if filename is None:
-            self._model = Snow()
+            self._model = Linearres()
         elif isinstance(filename, str):
             with open(filename, "r") as file_obj:
-                self._model = Snow.from_file_like(file_obj.read())
+                self._model = Linearres.from_file_like(file_obj.read())
         else:
-            self._model = Snow.from_file_like(filename)
+            self._model = Linearres.from_file_like(filename)
 
         self._values = {"atmosphere_water__precipitation_leq-volume_flux": self._model.ppt_mm,
-                        "land_surface_air__temperature": self._model.tair_c,
-                        "snowpack__liquid-equivalent_depth": self._model.swe_mm,
-                        "snowpack__melt_volume_flux": self._model.melt_mm}
+                        "land_surface_water__runoff_volume_flux": self._model.q_mm}
         self._var_units = {"atmosphere_water__precipitation_leq-volume_flux": "mm d-1",
-                           "land_surface_air__temperature": "C",
-                           "snowpack__liquid-equivalent_depth": "mm",
-                           "snowpack__melt_volume_flux": "mm d-1"}
+                           "land_surface_water__runoff_volume_flux": "mm d-1"}
         self._grid_type = {0: "scalar"}
 
     def update(self):

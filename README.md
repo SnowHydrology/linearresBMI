@@ -1,12 +1,12 @@
-# snowBMI
+# linearresBMI
 
-**Description**:  This simple, temperature index snow model includes an implementation of the [Basic Model Interface](https://csdms.colorado.edu/wiki/BMI) (BMI). It's meant for demonstration purposes, but feel free to use it however you like. I'd recommend it mostly for snow modeling, but you do you.
+**Description**:  This linear reservoir model includes an implementation of the [Basic Model Interface](https://csdms.colorado.edu/wiki/BMI) (BMI). It's meant for demonstration purposes, but feel free to use it however you like. I'd recommend it mostly for hydrologic modeling, but you do you.
 
 BMI is developed by the [CSDMS](https://csdms.colorado.edu/wiki/Main_Page) group at CU Boulder. Much of the BMI code here is from their [heat](https://github.com/csdms/bmi-example-python) example. 
 
 ## Dependencies
 
-This is a simple bit of Python code developed with Python 3.9. The `snowBMI` module requires:
+This is a simple bit of Python code developed with Python 3.9. The `linearresBMI` module requires:
 
 * The [BMI Python bindings](https://github.com/csdms/bmi-python) from CSDMS
 * `numpy`
@@ -20,7 +20,7 @@ The example also requires:
 
 ## Installation
 
-First install the BMI Python bindings using the CSDMS instructions. Next, build the model by going to the main level of the `snowBMI` directory and running:
+First install the BMI Python bindings using the CSDMS instructions. Next, build the model by going to the main level of the `linearresBMI` directory and running:
 
 `pip install -e .`
 
@@ -54,9 +54,7 @@ If you see any bugs, errors, etc., please use this repo's Issue Tracker. You can
 
 1. [BMI](https://csdms.colorado.edu/wiki/BMI) from CSDMS
 2. The BMI Python [heat](https://github.com/csdms/bmi-example-python) example
-3. Temperature index snow models like Snow-17 and the equations in DeWalle and Rango (2008)
-    - _Anderson, E. A. "Snow accumulation and ablation model–SNOW-17." US National Weather Service, Silver Spring, MD 61 (2006)._
-    - _DeWalle, David R., and Albert Rango. Principles of Snow Hydrology. Cambridge University Press, 2008._
+3. 
 4. The Next Generation Water Prediction Capability project at the NOAA-NWS Office of Water Prediction
    - GitHub repo for the [NextGen Framework](https://github.com/NOAA-OWP/ngen)
    - BMI implementation of the [LSTM](https://github.com/NOAA-OWP/lstm/) machine learning model
