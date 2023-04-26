@@ -30,16 +30,15 @@ This model comes with an example Jupyter Notebook so you can see how the BMI fun
 
 `examples/run-model-from-bmi.ipynb`
 
-To note, the example comes with its own SNOTEL forcing data, but you can create your own using the R code in `tools`.
+To note, the example comes with its own synthetic forcing data, but you can create your own using the R code in `tools`.
 
 ## Known issues
 
 This is but a simple model that makes several assumptions. They are:
 
-* Snow hydrology is ignored (if melt is produced then it immediately disappears from the snowpack)
-* Rainfall is added to snowmelt so that the melt term represents a land surface water flux
-* The model is configured for a daily timestep
-* Date handling is only done by a day of year tracker in the code (i.e., there is no explicit handling of POSIX-formatted datetimes)
+* All incoming precipitation (or land surface water flux) is liquid
+* Discharge is the only way to leave the reservoir (i.e., there is no evapotranspiration)
+* The model is configured for a daily timestep and there is no explicit handling of POSIX-formatted datetimes
 
 ## Reporting issues, getting help
 
@@ -54,7 +53,8 @@ If you see any bugs, errors, etc., please use this repo's Issue Tracker. You can
 
 1. [BMI](https://csdms.colorado.edu/wiki/BMI) from CSDMS
 2. The BMI Python [heat](https://github.com/csdms/bmi-example-python) example
-3. 
+3. Wikipedia's entry on [runoff models](https://en.wikipedia.org/wiki/Runoff_model_(reservoir)) (yes, that Wikipedia)
+   - The linear reservoir equation cites this document: *J.W. de Zeeuw, 1973. Hydrograph analysis for areas with mainly groundwater runoff. In: Drainage Principle and Applications, Vol. II, Chapter 16, Theories of field drainage and watershed runoff. p 321-358. Publication 16, International Institute for Land Reclamation and Improvement (ILRI), Wageningen, The Netherlands.* (good luck finding it!)
 4. The Next Generation Water Prediction Capability project at the NOAA-NWS Office of Water Prediction
    - GitHub repo for the [NextGen Framework](https://github.com/NOAA-OWP/ngen)
    - BMI implementation of the [LSTM](https://github.com/NOAA-OWP/lstm/) machine learning model
