@@ -15,8 +15,8 @@ def solve_linearres(precip, discharge, k, timestep_s):
         Modeled discharge per time step (flux that gets updated).
     k: float
         Loss parameter for linear reservoir (parameter).
-    dT: float
-        Model time step (parameter).
+    timestep_s: float
+        Model time step in seconds (parameter).
 
     Returns
     -------
@@ -28,10 +28,10 @@ def solve_linearres(precip, discharge, k, timestep_s):
     """
 
     # Calculate timestep in days
-    dT = timestep_s/86400
+    d_t = timestep_s/86400
 
     # Compute the new discharge using a linear reservoir function
-    discharge_new = discharge * (np.exp(-k*dT) + (precip * (1 - exp(-k*dT))))
+    discharge_new = discharge * (np.exp(-k*d_t) + (precip * (1 - np.exp(-k*d_t))))
 
     # Set discharge to the newly computed value
     np.add(0, discharge_new, out=discharge)
@@ -49,7 +49,7 @@ class Linearres(object):
     """
 
     def __init__(
-        self, k, discharge_init=0,
+        self, k=0.5, discharge_init=0,
     ):
         """Create a new Linearres model.
 
