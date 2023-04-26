@@ -31,7 +31,7 @@ def solve_linearres(precip, discharge, k, timestep_s):
     d_t = timestep_s/86400
 
     # Compute the new discharge using a linear reservoir function
-    discharge_new = discharge * (np.exp(-k*d_t) + (precip * (1 - np.exp(-k*d_t))))
+    discharge_new = (discharge * np.exp(-k*d_t)) + (precip * (1 - np.exp(-k*d_t)))
 
     # Set discharge to the newly computed value
     np.add(0, discharge_new, out=discharge)

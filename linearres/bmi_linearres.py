@@ -11,7 +11,7 @@ class LinearresBmi(Bmi):
 
     """Linear reservoir model"""
 
-    _name = "Linear reservoir Model with BMI"
+    _name = "Linear Reservoir Model with BMI"
     _input_var_names = ("atmosphere_water__precipitation_leq-volume_flux",)
     _output_var_names = ("land_surface_water__runoff_volume_flux",)
 
