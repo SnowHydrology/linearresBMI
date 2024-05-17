@@ -83,6 +83,11 @@ class Linearres(object):
         """Model time step."""
         return self._time_step
 
+    @time_step.setter
+    def time_step(self, time_step):
+        """Set time_step."""
+        self._time_step[:] = time_step
+
     @property
     def ppt_mm(self):
         """Current precipitation."""
