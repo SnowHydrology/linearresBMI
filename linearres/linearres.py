@@ -49,7 +49,7 @@ class Linearres(object):
     """
 
     def __init__(
-        self, k=0.5, discharge_init=0,
+        self, k=0.5, discharge_init=0, timestep=3600,
     ):
         """Create a new Linearres model.
 
@@ -60,7 +60,7 @@ class Linearres(object):
         self._k = k
 
         self._time = 0.0
-        self._time_step = 86400
+        self._time_step = timestep
 
         self._ppt_mm = np.zeros(1, dtype=float)
         self._q_mm = np.zeros(1, dtype=float)
